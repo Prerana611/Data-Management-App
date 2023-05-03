@@ -14,7 +14,7 @@ export class LoginComponent {
   user : any;
   loginform!: FormGroup; 
   msg="";
-  constructor(private fb: FormBuilder, private service:LoginService,private routes : Router,
+  constructor(private fb: FormBuilder, private loginservice:LoginService,private routes : Router,
     private authService: AuthserviceService){
    localStorage.setItem('username',this.user);
     this.loginform = this.fb.group({  
@@ -45,10 +45,10 @@ login() {
   const user = { email: this.loginform.value.empid, password: this.loginform.value.password, role:this.loginform.value.role };
   this.user=this.loginform.value.empid;
   const { empid, password } = this.loginform.value;
-  this.service.getemployeeforauth(empid, password).subscribe(
+  this.loginservice.getemployeeforauth(empid, password).subscribe(
     isLoggedIn => {
       if (isLoggedIn) {
-        localStorage.setItem('role',this.service.Username)
+        localStorage.setItem('role',this.loginservice.Username)
         // this.authService.setCurrentUser(user);
         this.routes.navigate(['/all-emp']);
         console.log(localStorage)

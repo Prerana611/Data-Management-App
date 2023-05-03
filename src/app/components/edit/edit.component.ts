@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  ActivatedRoute, Router } from '@angular/router';
+import { CoreService } from 'src/app/services/core.service';
 import { DataService } from 'src/app/services/data.service';
 import { __param } from 'tslib';
  
@@ -10,7 +11,8 @@ import { __param } from 'tslib';
 })
 export class EditComponent implements OnInit {
   Student: any;
-  constructor(private dataservice:DataService,private router:Router, private route:ActivatedRoute ){
+  constructor(private dataservice:DataService,
+    private _coreservice: CoreService,private router:Router, private route:ActivatedRoute ){
   }
   
   ngOnInit(): void {
@@ -25,12 +27,18 @@ export class EditComponent implements OnInit {
 console.log(data);
 this.Student = data
 console.log('data',this.Student.fname)
+console.log('data',this.Student)
+
     })
    }
 
    updateemp(){
     this.dataservice.update(this.Student).subscribe({
       next:(data)=>{
+        this._coreservice.openSnackBar('employee deleted', 'done');
+
+        this.router.navigate(['all-emp']);
+
 console.log('updated')
       },
       error:(er)=>{

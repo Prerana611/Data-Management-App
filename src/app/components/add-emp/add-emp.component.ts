@@ -71,7 +71,7 @@ export class AddEmpComponent implements OnInit {
       empid :new FormControl(this.empid, Validators.required) ,
       password:new FormControl('', Validators.required) ,
       email:new FormControl('', [Validators.required, Validators.email]),
-      pnumber:new FormControl('', Validators.required) ,
+      pnumber:new FormControl('', [Validators.required,Validators.maxLength(10), Validators.minLength(10)]) ,
       quantities: this.fb.array([]) ,
       role:new FormControl('', Validators.required) ,
       record:new FormControl(this.currentDate, Validators.required) ,

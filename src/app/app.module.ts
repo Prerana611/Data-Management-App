@@ -11,7 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AllEmpComponent } from './components/all-emp/all-emp.component';
-import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import {MatSortModule} from '@angular/material/sort';
 import { EditComponent } from './components/edit/edit.component';
 import { LoginService } from './services/login.service';

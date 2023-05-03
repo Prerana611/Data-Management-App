@@ -4,8 +4,6 @@
       <button class="btn btn-danger my-2 my-sm-0 ms-auto" type="btn" (click)="logout()">Logout</button>
 </nav>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-
-  
     <ng-container matColumnDef="fname">
       <th mat-header-cell *matHeaderCellDef  mat-sort-header> First Name </th>
       <td mat-cell *matCellDef="let element"> {{element.fname}} </td>
@@ -31,20 +29,10 @@
         <td mat-cell *matCellDef="let element"> {{element.date| date}} </td>
       </ng-container>
       
-      <ng-container matColumnDef="img">
+      <!-- <ng-container matColumnDef="img">
         <th mat-header-cell *matHeaderCellDef>Joining img </th>
-        <!-- <td mat-cell *matCellDef="let element"> {{element.img}} </td> -->
         <td mat-cell *matCellDef="let element"> <img  [src]="element.img" height="100" width="100"> </td>
 
-      </ng-container>
-      <!-- <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
-        <td mat-cell *matCellDef="let element"> 
-          <button mat-icon-button [routerLink]="['/edit/'+ element.id]">
-          <mat-icon [hidden]="element?.role == 'Viewer'">edit</mat-icon> </button>
-          <button mat-icon-button color="warn" (click)="deleteemployee(element.id)">
-            <mat-icon [hidden]="element?.role == 'Editor' || element?.role== 'Viewer'">delete</mat-icon> </button>
-        </td>
       </ng-container> -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>

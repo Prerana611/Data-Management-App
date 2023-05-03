@@ -14,7 +14,7 @@ import { AuthserviceService } from 'src/app/services/authservice.service';
   styleUrls: ['./all-emp.component.scss']
 })
 export class AllEmpComponent implements OnInit{
-  displayedColumns: string[] = ['fname', 'lname', 'empid', 'email','record','date','img','action'
+  displayedColumns: string[] = ['fname', 'lname', 'empid', 'email','record','date','action'
 ];
   dataSource!: MatTableDataSource<any []>;
   msg="";
@@ -33,7 +33,6 @@ export class AllEmpComponent implements OnInit{
     this.currentUser = this.loginservice.Username?.role;
     console.log('Current user:', localStorage.getItem('role'));
     
-    console.log(this.loginservice);
     this.empdata.getemployee().subscribe (response => {
       console.log('json',response);
 
@@ -42,35 +41,19 @@ export class AllEmpComponent implements OnInit{
 
     });
   }
-  sortDirection: string = 'asc';
-  
-  navigateToEmployeeDetail(empid: number): void {
-    this.router.navigate(['emp/:id', empid]);
-  }
 
-  navigate(empid: number){  
-  
-  this.empdata.getemployee().subscribe(res=>{
-    const user = res.map((a: any) =>{
-      return a.empid === empid && a.role === "Admin"
-    });
-    if(user){
-      this.router.navigate(['emp/:id', empid]);
-      console.log(user)
-          }
-          else{      
-                  this.msg ='Invalid username or password';
-                  console.log(res.map((a: any) => a.role));
-              } 
-  })
-  }
-  
   deleteemployee(id:number){
     if(localStorage.getItem('role')=== 'Admin'){
       this.empidservice.deleteemployee(id).subscribe({
         next: (res) => {
           this._coreservice.openSnackBar('employee deleted', 'done');
-         
+          this.empdata.getemployee().subscribe (response => {
+            console.log('json',response);
+      
+            this.dataSource = new MatTableDataSource(response);
+      
+          });
+
         },
         error: console.log,
         
@@ -79,16 +62,30 @@ export class AllEmpComponent implements OnInit{
     else{
       alert('you are not authorized')
     }
-     
-   
   }
   logout(){
     localStorage.clear();
 this.loginservice.logout();
 alert('Are you sure you want to logout')
-
 this.router.navigate(['login']);
-
-
   }
+
+
+    // navigate(empid: number){  
+  
+  // this.empdata.getemployee().subscribe(res=>{
+  //   const user = res.map((a: any) =>{
+  //     return a.empid === empid && a.role === "Admin"
+  //   });
+  //   if(user){
+  //     this.router.navigate(['emp/:id', empid]);
+  //     console.log(user)
+  //         }
+  //         else{      
+  //                 this.msg ='Invalid username or password';
+  //                 console.log(res.map((a: any) => a.role));
+  //             } 
+  // })
+  // }
+  
 }
