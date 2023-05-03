@@ -1,0 +1,122 @@
+
+<div class="container">
+    <div >
+        <h1>Employee Form</h1>
+        </div>
+        <form id="myForm" data-sort-order="asc" data-sort-field="">
+        <div class="contain">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput name="fname" [(ngModel)] ="Student.fname"  >
+                      </mat-form-field>
+                      </div>
+                      <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput  name="lname" [(ngModel)] ="Student.lname" >
+                          </mat-form-field> 
+                      </div>
+                  
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline"   >
+                        <mat-label>Employee ID</mat-label>
+                        <input matInput name="empid" [(ngModel)] ="Student.empid" type="number"  >
+                      </mat-form-field>
+                     </div>
+                      <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput name="password" [(ngModel)] ="Student.password" >
+                          </mat-form-field>
+                         
+                      </div>
+                  
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput name="email" [(ngModel)] ="Student.email" required>
+                      </mat-form-field>
+                      
+                      </div>
+                      <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput name="pnumber" [(ngModel)] ="Student.pnumber" >
+                          </mat-form-field>
+                          
+                      </div>
+                  
+            </div>
+            <ng-container >
+    
+           
+                <legend>Family Members</legend>
+                <div class="family-member">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput name="name" [(ngModel)] ="Student.name" >
+                   
+                  </mat-form-field>
+            &nbsp;
+                  <mat-form-field appearance="outline">
+                    <mat-label>Occupation</mat-label>
+                    <input matInput name="occupation" [(ngModel)] ="Student.occupation" >
+                  </mat-form-field>
+                  &nbsp;
+                  <mat-form-field appearance="outline">
+                    <mat-label>Age</mat-label>
+                    <input matInput name="age" [(ngModel)] ="Student.age"  >
+                  </mat-form-field>
+                  
+                </div>
+            </ng-container>
+    
+            <div class="row">
+                <mat-radio-group aria-label="Select an option" name="role" [(ngModel)] ="Student.role">
+                    <mat-label style="margin-top: 5px;"><b>Role</b></mat-label>
+                    <mat-radio-button value="Editor">Editor</mat-radio-button>
+                    <mat-radio-button value="Admin">Admin</mat-radio-button>
+                    <mat-radio-button value="Viewer">Viewer </mat-radio-button>
+                  </mat-radio-group>
+              </div>
+            
+              <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Created Record on</mat-label>
+                        <input matInput name="record" [(ngModel)] ="Student.record" >
+                      </mat-form-field>
+                </div>
+                <div class="col">
+                <mat-form-field #autocomplete appearance="outline" class="example-form-field">
+                    <mat-label>Choose a date</mat-label>
+                    <input inputmode="numeric" matInput [matDatepicker]="datepicker" name="date" [(ngModel)] ="Student.date">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>        
+                     
+                    </mat-datepicker>
+                  </mat-form-field>
+                  
+                  </div>
+                 </div>
+           
+                 
+                 </div>
+                 
+         <button type="submit" class="btn btn-success"  (click)="updateemp()" >Update</button>  
+         </form>
+        
+        </div>
+    
+        
+
+
+
+  <!-- <p>{{Student.fname}}</p> -->

@@ -1,0 +1,162 @@
+
+<div class="container">
+<div >
+    <h1>Employee Form</h1>
+    </div>
+    <form [formGroup]="employeeform"  (ngSubmit)="onSubmit()" id="myForm" data-sort-order="asc" data-sort-field="">
+    <div class="contain">
+        <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="fname" >
+                  </mat-form-field>
+                  <!-- <mat-error  *ngIf="employeeform.get('fname')?.hasError('required')">fname is required.</mat-error> -->
+                  <div *ngIf=" employeeform.get('fname')?.invalid && (employeeform.get('fname')?.dirty || employeeform.get('fname')?.touched)" style="color:red
+                  ">
+                    <div *ngIf="employeeform.get('fname')?.errors?.['required']"></div>
+                    <div *ngIf="employeeform.get('fname')?.errors?.['fname']">Invalid fname format.</div>
+                </div>
+                  </div>
+                  <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lname">
+                      </mat-form-field>
+                      <div *ngIf=" employeeform.get('lname')?.invalid && (employeeform.get('lname')?.dirty || employeeform.get('lname')?.touched)" style="color:red
+                      ">
+                        <div *ngIf="employeeform.get('lname')?.errors?.['required']">lname is required.</div>
+                        <div *ngIf="employeeform.get('lname')?.errors?.['lname']">Invalid lname format.</div>
+                    </div>
+                  </div>
+              
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline"   >
+                    <mat-label>Employee ID</mat-label>
+                    <input matInput formControlName="empid"  >
+                  </mat-form-field>
+                  <div *ngIf=" employeeform.get('empid')?.invalid && (employeeform.get('empid')?.dirty || employeeform.get('empid')?.touched)" style="color:red
+                  ">
+                    <div *ngIf="employeeform.get('empid')?.errors?.['required']">empid is required.</div>
+                    <div *ngIf="employeeform.get('empid')?.errors?.['empid']">Invalid empid format.</div>
+                </div>
+                  </div>
+                  <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password" type="password" >
+                      </mat-form-field>
+                      <div *ngIf=" employeeform.get('password')?.invalid && (employeeform.get('password')?.dirty || employeeform.get('password')?.touched)" style="color:red
+                      ">
+                        <div *ngIf="employeeform.get('password')?.errors?.['required']">password is required.</div>
+                        <div *ngIf="employeeform.get('password')?.errors?.['password']">Invalid password format.</div>
+                    </div>
+                  </div>
+              
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="email" required>
+                   
+                    <!-- 
+                    <div *ngIf="email.invalid && (email?.dirty || email?.touched)">
+                      
+                      </div> -->
+                  </mat-form-field>
+                  <div *ngIf=" employeeform.get('email')?.invalid && (employeeform.get('email')?.dirty || employeeform.get('email')?.touched)" style="color:red
+                      ">
+                        <div *ngIf="employeeform.get('email')?.errors?.['required']">email is required.</div>
+                        <div *ngIf="employeeform.get('email')?.errors?.['email']">Invalid email format.</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput formControlName="pnumber" type="number" >
+                      </mat-form-field>
+                      <div *ngIf=" employeeform.get('pnumber')?.invalid && (employeeform.get('pnumber')?.dirty || employeeform.get('pnumber')?.touched)" style="color:red
+                      ">
+                        <div *ngIf="employeeform.get('pnumber')?.errors?.['required']">pnumber is required.</div>
+                        <div *ngIf="employeeform.get('pnumber')?.errors?.['pnumber']">Invalid pnumber format.</div>
+                    </div>
+                  </div>
+              
+        </div>
+        <ng-container formArrayName="quantities">
+
+       
+            <legend>Family Members</legend>
+            <div class="family-member" *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+              <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" >
+                <div *ngIf=" employeeform.get('name')?.invalid && (employeeform.get('name')?.dirty || employeeform.get('name')?.touched)">
+                    <div *ngIf="employeeform.get('name')?.errors?.['required']">name is required.</div>
+                    <div *ngIf="employeeform.get('name')?.errors?.['name']">Invalid name format.</div>
+                </div>
+              </mat-form-field>
+        &nbsp;
+              <mat-form-field appearance="outline">
+                <mat-label>Occupation</mat-label>
+                <input matInput formControlName="occupation" >
+              </mat-form-field>
+              &nbsp;
+              <mat-form-field appearance="outline">
+                <mat-label>Age</mat-label>
+                <input matInput formControlName="age" >
+              </mat-form-field>
+              
+            </div>
+        </ng-container>
+          <button class="btn btn-success" id="add-family-member" type="button" (click)="addQuantity()">+</button>
+
+        <div class="row">
+            <mat-radio-group aria-label="Select an option" formControlName="role">
+                <mat-label style="margin-top: 5px;"><b>Role</b></mat-label>
+                <mat-radio-button value="Editor">Editor</mat-radio-button>
+                <mat-radio-button value="Admin">Admin</mat-radio-button>
+                <mat-radio-button value="Viewer">Viewer </mat-radio-button>
+              </mat-radio-group>
+          </div>
+        
+          <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Created Record on</mat-label>
+                    <input matInput formControlName="record">
+                  </mat-form-field>
+            </div>
+            <div class="col">
+            <mat-form-field #autocomplete appearance="outline" class="example-form-field">
+                <mat-label>Choose a date</mat-label>
+                <input inputmode="numeric" matInput [matDatepicker]="datepicker" formControlName="date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>        
+                 
+                </mat-datepicker>
+              </mat-form-field>
+              <div *ngIf=" employeeform.get('date')?.invalid && (employeeform.get('date')?.dirty || employeeform.get('date')?.touched)" style="color:red
+                      ">
+                        <div *ngIf="employeeform.get('date')?.errors?.['required']">date is required.</div>
+                        <div *ngIf="employeeform.get('date')?.errors?.['date']">Invalid date format.</div>
+                    </div>
+              </div>
+             </div>
+             <!-- <img [src]= "src"> -->
+                          <input type="file"  (change)="onFileSelected($event)">
+                          <!-- <input type="text" formControlName="img" (change)="onFileSelected($event)"> -->
+
+             </div>
+     <button type="submit" class="btn btn-success"  [disabled]="!employeeform.valid" >Submit</button>  
+     </form>
+     <!-- <div >
+        {{ data | json }}
+     </div> -->
+    </div>
+
+    
