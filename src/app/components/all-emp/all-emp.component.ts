@@ -18,7 +18,7 @@ export class AllEmpComponent implements OnInit{
 ];
   dataSource!: MatTableDataSource<any []>;
   msg="";
-  
+  role:any;
   constructor( private empdata:LoginService,
     private empidservice:DataService,
     private router: Router,
@@ -32,7 +32,7 @@ export class AllEmpComponent implements OnInit{
     ngOnInit(): void {
     this.currentUser = this.loginservice.Username?.role;
     console.log('Current user:', localStorage.getItem('role'));
-    
+    this.role= localStorage.getItem('role');
     this.empdata.getemployee().subscribe (response => {
       console.log('json',response);
 
@@ -41,7 +41,10 @@ export class AllEmpComponent implements OnInit{
 
     });
   }
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   deleteemployee(id:number){
     if(localStorage.getItem('role')=== 'Admin'){
       this.empidservice.deleteemployee(id).subscribe({

@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   {path: 'add-emp', component: AddEmpComponent, canActivate: [AuthguardGuard] }
 ];
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     AddEmpComponent,
     LoginComponent,

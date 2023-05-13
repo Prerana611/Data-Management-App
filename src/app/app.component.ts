@@ -18,17 +18,17 @@ export class AppComponent {
 
   constructor(private _emplist:DataService){
   }
-  getemployeelist() {
-    // this._emplist.getemployee().subscribe({
-    //   next: (res: any) => {
-    //     this.dataSource = new MatTableDataSource(res);
-    //   },
-    //   error: console.log,
-    // })
-    this._emplist.getemployee().subscribe (response => {
-              this.dataSource = new MatTableDataSource(response);
+  // getemployeelist() {
+  //   // this._emplist.getemployee().subscribe({
+  //   //   next: (res: any) => {
+  //   //     this.dataSource = new MatTableDataSource(res);
+  //   //   },
+  //   //   error: console.log,
+  //   // })
+  //   this._emplist.getemployee().subscribe (response => {
+  //             this.dataSource = new MatTableDataSource(response);
 
-      console.log('json',response);
-    });
-  }
+  //     console.log('json',response);
+  //   });
+  // }
 }

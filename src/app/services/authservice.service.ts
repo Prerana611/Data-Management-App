@@ -14,11 +14,5 @@ export class AuthserviceService {
   setLoggedIn(value: boolean) {
     this.loggedIn = value;
   }
-  setCurrentUser(user: { email: string, password: string, role: string }) {
-    this.currentUser = user;
-  }
 
-  getCurrentUser() {
-    return this.currentUser;
-  }
 }

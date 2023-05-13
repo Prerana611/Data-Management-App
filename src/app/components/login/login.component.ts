@@ -49,7 +49,6 @@ login() {
     isLoggedIn => {
       if (isLoggedIn) {
         localStorage.setItem('role',this.loginservice.Username)
-        // this.authService.setCurrentUser(user);
         this.routes.navigate(['/all-emp']);
         console.log(localStorage)
         console.log('loggedin')

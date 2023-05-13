@@ -11,24 +11,24 @@ export class DataService {
   addemployee(data: any): Observable<any> {
     return this.http.post('http://localhost:3000/employee', data)
 }
-getemployee(): Observable<any[]> {
-  return this.http.get<any[]>('http://localhost:3000/employee').pipe(
-    map(response => {
-      if (Array.isArray(response)) {
-        // Check if the response is an array, if not, create an empty array
-        return response;
-      } else {
-        // If the response is not an array, return an empty array
-        return [];
-      }
-    }),
-    catchError(error => {
-      // Handle any errors that occur during the HTTP request
-      console.error('Error fetching employees:', error);
-      return of([]); // Return an empty array on error
-    })
-  );
-}
+// getemployee(): Observable<any[]> {
+//   return this.http.get<any[]>('http://localhost:3000/employee').pipe(
+//     map(response => {
+//       if (Array.isArray(response)) {
+//         // Check if the response is an array, if not, create an empty array
+//         return response;
+//       } else {
+//         // If the response is not an array, return an empty array
+//         return [];
+//       }
+//     }),
+//     catchError(error => {
+//       // Handle any errors that occur during the HTTP request
+//       console.error('Error fetching employees:', error);
+//       return of([]); // Return an empty array on error
+//     })
+//   );
+// }
 
 getdetailid(id: any): Observable<any> {
     return this.http.get('http://localhost:3000/employee?empid='+id)

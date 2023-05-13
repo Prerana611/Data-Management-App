@@ -35,7 +35,7 @@ console.log('data',this.Student)
    updateemp(){
     this.dataservice.update(this.Student).subscribe({
       next:(data)=>{
-        this._coreservice.openSnackBar('employee deleted', 'done');
+        this._coreservice.openSnackBar('employee Updated', 'done');
 
         this.router.navigate(['all-emp']);
 
